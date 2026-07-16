@@ -1,0 +1,10 @@
+[Unit]
+Description=dictate-anywhere whisper-server (local speech-to-text)
+
+[Service]
+ExecStart=@@WHISPER_SERVER@@ -m @@MODEL_PATH@@ --host 127.0.0.1 --port @@PORT@@ -l auto -nt -t @@THREADS@@
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target
