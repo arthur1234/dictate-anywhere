@@ -58,6 +58,10 @@ The script installs packages, builds whisper.cpp, downloads a model (`large-v3-t
 
 Non-GNOME desktops: the script installs everything except the shortcut; bind a key to `~/.local/bin/dictate.sh` manually.
 
+### Windows (experimental)
+
+There's no dedicated Windows installer yet, but the core is cross-platform: whisper.cpp and ffmpeg both run on Windows, and [AutoHotkey](https://www.autohotkey.com/) fills the same role Hammerspoon does on macOS (global hotkey, record, paste). The practical way to set it up today is the AI-agent route below, pointing an agent at [PROMPT.md](PROMPT.md), which now includes Windows-specific guidance. If you get it working, a `windows/` folder PR is very welcome.
+
 ### Any machine, via an AI coding agent
 
 If you use Claude Code (or a similar agent), just tell it:
@@ -88,6 +92,8 @@ The recognized text is also placed on the clipboard, so if pasting ever fails yo
 |---|---|---|
 | macOS | Apple Silicon, 8 GB RAM (turbo model) | 16+ GB RAM (large-v3) |
 | Linux | x86_64, 8 GB RAM, CPU-only (turbo) | NVIDIA GPU + CUDA (large-v3) |
+
+Windows has no native installer yet; see the [Windows note](#windows-experimental) above for the AI-agent route.
 
 The model file itself is 1.5 GB (turbo) or 2.9 GB (large-v3) on disk and stays resident in RAM while `whisper-server` runs.
 

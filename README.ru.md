@@ -58,6 +58,10 @@ cd dictate-anywhere
 
 Не GNOME: скрипт установит всё, кроме шортката; привяжите клавишу к `~/.local/bin/dictate.sh` вручную.
 
+### Windows (экспериментально)
+
+Отдельного установщика под Windows пока нет, но ядро кроссплатформенное: whisper.cpp и ffmpeg работают под Windows, а [AutoHotkey](https://www.autohotkey.com/) играет ту же роль, что Hammerspoon на macOS (глобальный хоткей, запись, вставка). Практичный способ настроить это сегодня, путь через AI-агента ниже: скармливаете агенту [PROMPT.md](PROMPT.md), где теперь есть инструкция под Windows. Если у вас заработает, PR с папкой `windows/` очень приветствуется.
+
 ### Любая машина, через AI-агента
 
 Если пользуетесь Claude Code (или похожим агентом), просто скажите ему:
@@ -88,6 +92,8 @@ cd dictate-anywhere
 |---|---|---|
 | macOS | Apple Silicon, 8 GB RAM (модель turbo) | 16+ GB RAM (large-v3) |
 | Linux | x86_64, 8 GB RAM, только CPU (turbo) | NVIDIA GPU + CUDA (large-v3) |
+
+Под Windows нативного установщика пока нет; см. [заметку про Windows](#windows-экспериментально) выше про путь через AI-агента.
 
 Файл модели занимает 1.5 GB (turbo) или 2.9 GB (large-v3) на диске и живёт в RAM, пока работает `whisper-server`.
 

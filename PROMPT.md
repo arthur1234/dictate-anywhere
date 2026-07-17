@@ -39,6 +39,17 @@ The `macos/` and `linux/` install scripts in this repo handle the standard cases
 - **CUDA builds** need `nvcc` (the toolkit), not just `nvidia-smi` (the driver)
 - **KDE/Sway/others**: GNOME `gsettings` hotkey registration will not apply; bind `~/.local/bin/dictate.sh` via the DE's own shortcut settings (KDE: System Settings → Shortcuts; Sway: config file)
 
+## Windows (no stock script - build the setup from scratch)
+
+There is no `windows/` folder yet. Reach the same end state using native Windows tooling, then the acceptance test below applies unchanged:
+
+- **whisper-server**: download a prebuilt whisper.cpp Windows release, or build with CMake + Visual Studio. GPU acceleration via Vulkan (widest hardware support) or CUDA (NVIDIA). CPU-only works but `large-v3` is slow there, prefer `large-v3-turbo`. Keep it on `127.0.0.1:8765` with `-l auto -nt`
+- **Autostart**: a shortcut to a hidden launcher in `shell:startup`, or a Task Scheduler task triggered at logon
+- **Hotkey + paste**: [AutoHotkey v2](https://www.autohotkey.com/) is the Hammerspoon equivalent. Bind a hotkey that toggles recording, POSTs the WAV to the server, sets the clipboard and sends `^v`
+- **Record mic**: `ffmpeg -f dshow -i audio="<device name>"`. Unlike macOS/pulse there is no `:default`, enumerate devices with `ffmpeg -list_devices true -f dshow -i dummy` and let the user pick (or read the system default)
+- **Stop recording cleanly**: do NOT hard-kill ffmpeg, write `q` to its stdin (AutoHotkey can, over a launched process) so the WAV is finalized. `taskkill /IM ffmpeg.exe` without `/F` also lets it flush
+- **Unicode**: AutoHotkey clipboard paste handles Cyrillic/Hebrew reliably, prefer clipboard+paste over simulated keystrokes for non-Latin text
+
 ## Acceptance test
 
 Dictate a short phrase in each language the user cares about into a text editor; the text must appear in the focused field within a few seconds, correctly spelled, in the right language, with sensible punctuation. Then have the USER do the same once, so permissions prompted on first use are granted interactively.
