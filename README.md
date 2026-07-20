@@ -11,7 +11,8 @@ No subscriptions, no cloud, no audio leaving your computer. Just [whisper.cpp](h
 Dictation apps for this exact job charge $8-15/month for what is, mechanically, a hotkey + a local model + paste. If you are comfortable running one install script, you can have the same thing for free, with better privacy and a model as good as your hardware allows.
 
 - **Any text field** in any app: the text is pasted/typed where your cursor is
-- **Multilingual with auto-detect**: speak Russian, Hebrew, English (or any of ~100 Whisper languages) without switching anything
+- **Multilingual with auto-detect**: speak Russian, Hebrew, English, Arabic (or any of ~100 Whisper languages) without switching anything
+- **Live feedback** (macOS): while recording, an on-screen equalizer moves with your voice and flattens to a line in silence, with Stop / Cancel buttons
 - **Fast**: the model stays loaded in a local `whisper-server`, so a 6-second phrase transcribes in ~1.5 s on an Apple M-series chip
 - **Private**: audio goes to `127.0.0.1` and nowhere else
 - **Minimal**: one config file per OS, standard system tools, easy to read and modify
